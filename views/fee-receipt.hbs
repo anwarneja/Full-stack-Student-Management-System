@@ -1,0 +1,111 @@
+{{!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+</head>
+<body>
+    <div>
+      <h1>Fee Receipt</h1>
+<p>Student Name: {{fee.student_name}}</p>
+<p>Roll Number: {{fee.roll_number}}</p>
+<p>Fee Amount: {{fee.fee_amount}}</p>
+<p>Status: {{fee.status}}</p>
+<p>Paid Date: {{fee.paid_date}}</p>
+<button onclick="window.print()">Print Receipt</button>
+    </div>
+</body>
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Receipt</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .card {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #28a745;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .text-muted {
+            font-size: 1.1rem;
+        }
+        .alert-info {
+            font-size: 1.1rem;
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        .alert-info strong {
+            color: #0c5460;
+        }
+        .btn {
+            font-size: 1.2rem;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+<div id="all">
+    <div class="card shadow-lg text-center">
+        <h1>Fee Receipt</h1>
+        <p class="text-muted">Here are the details of your fee payment.</p>
+        
+        <div class="alert alert-info">
+            <strong>Student Name:</strong> {{fee.student_name}} <br>
+            <strong>Roll Number:</strong> {{fee.roll_number}} <br>
+            <strong>Fee Amount:</strong> {{fee.fee_amount}} <br>
+            <strong>Status:</strong> {{fee.status}} <br>
+            <strong>Paid Date:</strong> {{fee.paid_date}}
+        </div>
+
+        <button id="button" class="btn btn-success w-100 mb-2" >Print Receipt</button>
+
+        <a href="/fees" class="btn btn-secondary w-100">Back to Fees List</a>
+    </div>
+</div>
+<script>
+    let print=document.getElementById("button");
+    print.addEventListener("click",() => {
+          const content = document.getElementById('all');
+          html2pdf()
+          .from(content)
+          .save('FEE-RECEIPT.PDF')
+
+    });
+</script>
+</body>
+</html>

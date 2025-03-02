@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Records</title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css">
+    <style>
+  @media (max-width: 976px) {  /* Targets small screens */
+    .btn-info {
+        padding: 6px 12px;  /* Reduce padding */
+        font-size: 14px;    /* Adjust font size */
+        line-height: 1;     /* Prevent extra height */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        
+        <h2 class="text-center">Fee Records</h2>
+        
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                
+                <tr>
+                    <th>#</th>
+                    <th>Student Name</th>
+                    <th>Amount</th>
+                    <th>Paid Date</th>
+                    <th>Status</th>
+                    <th class="text-end">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each fees}}
+                <tr>
+                    <td>{{this.fee_id}}</td>
+                    <td>{{this.student_name}}</td>
+                    <td>{{this.fee_amount}}</td>
+                    <td>{{this.paid_date}}</td>
+                    <td>{{this.status}}</td>
+                    <td class="text-end">
+                         <!-- View Receipt Button -->
+        <a href="/receipt/{{this.fee_id}}" class="btn btn-info">View Receipt</a>
+        {{#if ../isAdmin}}
+                        <a href="/edit-fee/{{this.fee_id}}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="/confirm-delete/{{this.fee_id}}" class="btn btn-danger btn-sm">Delete</a>
+
+{{/if}}
+   
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{#if ./isAdmin}}
+        <a href="/add-fee" class="btn btn-success">Add New Fee</a>
+      
+                          <a href="/notify-due-fees" class="btn btn-warning btn-lg">
+         Send Reminder
+    </a>
+ {{/if}}
+
+    </div>
+</body>
+</html>
+
+
+
+{{!-- <h2 class="mb-4">Fees Information</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fee ID</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each fees}}
+        <tr>
+            <td>{{this.fee_id}}</td>
+            <td>{{this.fee_amount}}</td>
+            <td>{{this.paid_date}}</td>
+            <td>{{this.status}}</td>
+            <td>
+                <a href="/fee-receipt/{{this.fee_id}}" class="btn btn-info btn-sm">
+                    <i class="bi bi-receipt"></i> View Receipt
+                </a>
+                {{!-- {{#if ../isAdmin}} --}}
+                    {{!-- <a href="/edit-fee/{{this.fee_id}}" class="btn btn-warning btn-sm">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a> --}} 
+                    {{!-- <a href="/delete-fee/{{this.fee_id}}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                {{!-- {{/if}} --}}
+            {{!-- </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table> - --}}

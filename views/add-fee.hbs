@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Fee Payment</title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Add Fee Payment</h2>
+        <form action="/add-fee" method="POST">
+            <div class="mb-3">
+                <label for="student_id" class="form-label">Select Student</label>
+                <select class="form-select" id="student_id" name="student_id" required>
+                    {{#each students}}
+                        <option value="{{this.student_id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="fee_amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="fee_amount" name="fee_amount" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="paid_date" class="form-label">Paid Date</label>
+                <input type="date" class="form-control" id="paid_date" name="paid_date" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" name="status" required>
+                    <option value="Paid">Paid</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Fee</button>
+            <a href="/fees" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <script src="/path/to/bootstrap.bundle.min.js"></script>
+</body>
+</html>

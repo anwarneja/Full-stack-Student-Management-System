@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Fee Record</title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Edit Fee Record</h2>
+        <form action="/update-fee/{{fee.fee_id}}" method="POST">
+            <div class="mb-3">
+                <label for="student_name" class="form-label">Student Name</label>
+                <input type="text" class="form-control" id="student_name" value="{{fee.student_name}}" disabled>
+            </div>
+
+            <div class="mb-3">
+                <label for="fee_amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="fee_amount" name="fee_amount" value="{{fee.fee_amount}}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="paid_date" class="form-label">Paid Date</label>
+                <input type="date" class="form-control" id="paid_date" name="paid_date" value="{{fee.paid_date}}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" name="status" required>
+                     <option value="Paid" {{#if fee.isPaid}}selected{{/if}}>Paid</option>
+    <option value="Pending" {{#if fee.isPending}}selected{{/if}}>Pending</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Fee</button>
+            <a href="/fees" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <script src="/path/to/bootstrap.bundle.min.js"></script>
+</body>
+</html>

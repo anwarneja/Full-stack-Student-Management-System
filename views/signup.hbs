@@ -1,0 +1,139 @@
+<div class="signup-wrapper d-flex justify-content-center align-items-center">
+    <div class="signup-container">
+        <h2>Create Account</h2>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                {{#if error}}
+                <p style="color:red;">{{error}}</p>
+                {{/if}}
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group" style="position: relative;">
+                <input id="input" type="password" name="password" placeholder="Password" required>
+                <span id="togglePassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+            </div>
+            <button type="submit" class="btn-submit">Sign Up</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+    </div>
+</div>
+
+<style>
+    /* Ensures this form doesn't affect the main layout */
+    .signup-wrapper {
+        min-height: 100vh;
+        padding: 40px 15px;
+    }
+
+    .signup-container {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+        animation: bounceIn 1s ease;
+    }
+
+    h2 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+        border-color: #6a11cb;
+        box-shadow: 0 0 8px rgba(106, 17, 203, 0.5);
+    }
+
+    /* Eye icon positioning */
+    #togglePassword {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 18px;
+        color: #6a11cb;
+    }
+
+    .btn-submit {
+        background: linear-gradient(45deg, #6a11cb, #2575fc);
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        width: 100%;
+        transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+        background: #2575fc;
+    }
+
+    .login-link {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .login-link a {
+        color: #6a11cb;
+        text-decoration: none;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    @keyframes bounceIn {
+        0% { transform: scale(0); opacity: 0; }
+        50% { transform: scale(1.1); opacity: 0.5; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 576px) {
+        .signup-container {
+            padding: 30px;
+            border-radius: 15px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .signup-container {
+            padding: 20px;
+        }
+    }
+</style>
+
+<script>
+    // Password Toggle
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        const passwordInput = document.getElementById("input");
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        this.textContent = passwordInput.type === "password" ? "👁️" : "🙈";
+    });
+</script>

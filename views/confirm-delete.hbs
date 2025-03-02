@@ -1,0 +1,40 @@
+{{!-- <h1>Are you sure you want to delete this fee record?</h1>
+<p>Fee Amount: {{fee.fee_amount}}</p>
+<p>Paid Date: {{fee.paid_date}}</p>
+
+<!-- Confirm delete -->
+
+<form action="/delete-fee/{{fee.fee_id}}" method="POST">
+    <button type="submit">Yes, Delete</button>
+</form>
+
+<!-- Cancel deletion -->
+<a href="/fees">No, Go Back</a> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirm Delete</title>
+ 
+</head>
+
+
+    <div class="card shadow-lg p-4 text-center" style="max-width: 400px;">
+        <h3 class="text-danger">Are you sure?</h3>
+        <p class="text-muted">You are about to delete this fee record. This action cannot be undone.</p>
+        
+        <div class="alert alert-warning">
+            <strong>Fee Amount:</strong> {{fee.fee_amount}} <br>
+            <strong>Paid Date:</strong> {{fee.paid_date}}
+        </div>
+
+        <form action="/delete-fee/{{fee.fee_id}}" method="POST">
+            <button type="submit" class="btn btn-danger w-100 mb-2">Yes, Delete</button>
+        </form>
+
+        <a href="/fees" class="btn btn-secondary w-100">No, Go Back</a>
+    </div>
+
+</body>
+</html>

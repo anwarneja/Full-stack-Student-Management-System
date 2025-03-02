@@ -1,0 +1,95 @@
+ {{!-- <!-- Attendance Form -->
+        <div class="card p-4 shadow-sm mb-4">
+            <h5 class="text-center">Mark Attendance</h5>
+            <form action="/attendance" method="POST">
+                <div class="mb-3">
+                    <label for="student_id" class="form-label">Select Student</label>
+                    <select name="student_id" id="student_id" class="form-select" required>
+                        <option value="">-- Select Student --</option>
+                        {{#each students}}
+                        <option value="{{this.id}}">{{this.name}} - {{this.roll_number}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Attendance Status</label>
+                    <select name="status" id="status" class="form-select" required>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Submit Attendance</button>
+            </form>
+        </div> --}}
+
+        {{!-- <div class="container mt-4">
+    <h2 class="mb-3">Record Attendance</h2>
+    
+    <form action="/attendance/add" method="POST" class="p-4 shadow-lg">
+        <div class="mb-3">
+            <label for="student_id" class="form-label">Student</label>
+            <select name="student_id" id="student_id" class="form-select">
+                {{#each students}}
+                    <option value="{{this.student_id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="attendance_date" class="form-label">Date</label>
+            <input type="date" name="attendance_date" id="attendance_date" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Status</label><br>
+            <input type="radio" name="status" value="Present" checked> Present
+            <input type="radio" name="status" value="Absent"> Absent
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mt-4">
+    <h2 class="mb-3">Record Attendance</h2>
+    
+    <form action="/attendance/add" method="POST" class="p-4 shadow-lg">
+        <div class="mb-3">
+            <label for="student_id" class="form-label">Student</label>
+            <select name="student_id" id="student_id" class="form-select">
+                {{#each students}}
+                    <option value="{{this.student_id}}">{{this.name}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="attendance_date" class="form-label">Date</label>
+            <input type="date" name="attendance_date" id="attendance_date" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Status</label><br>
+            <input type="radio" name="status" value="Present" checked> Present
+            <input type="radio" name="status" value="Absent"> Absent
+
+            </label>
+                    {{!-- <select name="status" id="status" class="form-select" required>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select> --}}
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/edit-student/{{student.student_id}}" method="POST">
+  <div class="mb-3">
+    <label for="name" class="form-label">Student Name</label>
+    <input type="text" class="form-control" id="name" name="name" value="{{student.name}}" required>
+  </div>
+  <div class="mb-3">
+    <label for="roll_number" class="form-label">Roll Number</label>
+    <input type="text" class="form-control" id="roll_number" name="roll_number" value="{{student.roll_number}}" required>
+  </div>
+  <div class="mb-3">
+    <label for="class" class="form-label">Class</label>
+    <input type="text" class="form-control" id="class" name="clss" value="{{student.class}}" required>
+  </div>
+  <div class="mb-3">
+    <label for="parent_contact" class="form-label">Parent Contact</label>
+    <input type="text" class="form-control" id="parent_contact" name="parent_contact" value="{{student.parent_contact}}" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Update Student</button>
+</form>
+<script src="../server/controller/edit.js"></script> <!-- Add this in your `editstudent.ejs` -->
+
+</body>
+</html>
