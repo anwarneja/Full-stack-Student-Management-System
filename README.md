@@ -67,6 +67,11 @@ Open your browser and go to http://localhost:3000 to view the application.
 ### Fee Management
 ![Fee Management](screenshots/fee-management.png)
 
+📊 Attendance Tracking
+![Attendance](screenshots/dashboard.png)
+
+
+
 
 🤝 Contributing
 We welcome contributions! If you would like to contribute to this project, please fork the repository and submit a pull request.
