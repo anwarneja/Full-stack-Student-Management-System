@@ -58,8 +58,14 @@ Open your browser and go to http://localhost:3000 to view the application.
 📸 Screenshots
 🏠 Dashboard
 
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+
 
 💰 Fee Management
+### Fee Management
+![Fee Management](screenshots/fee-management.png)
 
 
 🤝 Contributing
