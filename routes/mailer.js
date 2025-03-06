@@ -10,7 +10,6 @@ const transporter = nodemailer.createTransport({
 });
 
 
-
 // Function to send email
 const sendEmail = (to, subject, text) => {
     console.log(`Sending email to: ${to}`);
