@@ -219,7 +219,7 @@ router.get("/student/:id", (req, res) => {
     } else if (result.length === 0) {
       res.status(404).send("Student not found");
     } else {
-      res.render("studentDetail", { student: result[0] });
+      res.render("studentdetail", { student: result[0] });
     }
   });
 });
