@@ -41,7 +41,7 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
     const { email, password } = req.body;
     const sql = "SELECT * FROM users WHERE email = ?";
-    pool.query(sql, [email], async (err, results) => {
+    db.query(sql, [email], async (err, results) => {
         if (err) return res.status(500).send("Database error");
         if (results.length === 0) return res.render("login", { error: "User not found/* Email provided doesn't have an account" });
         
