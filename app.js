@@ -77,7 +77,10 @@ app.get("/pp", (req, res) => {
 const { isAuthenticated, isAdmin, isTeacher, isStudent } = require("./middlewares/middleware");
 
 
-
+// Add this root route
+router.get('/', (req, res) => {
+    res.redirect('/pp'); // Redirect to student list
+});
 
 
 // Start the server
@@ -88,6 +91,9 @@ const { isAuthenticated, isAdmin, isTeacher, isStudent } = require("./middleware
 //         console.log("Server listening to port: 3000");
 //     }
 // });
-
+app.get('/', (req, res) => {
+    res.send('Welcome to the Student Management System'); // Simple test
+    // Or: res.render('index'); if you have an index.hbs
+});
 
 module.exports = app;
