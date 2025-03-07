@@ -241,7 +241,7 @@ router.get('/fees', (req, res) => {
     const isAdmin = req.session.user.role === "admin";
     const query = `
         SELECT f.fee_id, f.fee_amount, f.paid_date, f.status, s.name AS student_name
-        FROM Fees f
+        FROM fees f
         JOIN students s ON f.student_id = s.student_id
         ORDER BY f.paid_date DESC
     `;
@@ -259,7 +259,7 @@ router.get('/edit-fee/:id', (req, res) => {
     const feeId = req.params.id;
     const query = `
         SELECT f.fee_id, f.fee_amount, f.paid_date, f.status, s.student_id, s.name AS student_name
-        FROM Fees f
+        FROM fees f
         JOIN students s ON f.student_id = s.student_id
         WHERE f.fee_id = ?
     `;
@@ -283,7 +283,7 @@ router.post('/update-fee/:id', (req, res) => {
     const feeId = req.params.id;
     const { fee_amount, paid_date, status } = req.body;
     const query = `
-        UPDATE Fees
+        UPDATE fees
         SET fee_amount = ?, paid_date = ?, status = ?
         WHERE fee_id = ?
     `;
@@ -310,7 +310,7 @@ router.get('/add-fee', (req, res) => {
 
 router.post('/add-fee', (req, res) => {
     const { student_id, fee_amount, paid_date, status } = req.body;
-    const checkQuery = `SELECT * FROM Fees WHERE student_id = ? AND paid_date = ?`;
+    const checkQuery = `SELECT * FROM fees WHERE student_id = ? AND paid_date = ?`;
 
     pool.query(checkQuery, [student_id, paid_date], (err, results) => {
         if (err) {
@@ -321,7 +321,7 @@ router.post('/add-fee', (req, res) => {
             return res.render('errorfee', { message: 'Fee entry already exists for this date!', link: '/fees' });
         }
         const insertQuery = `
-            INSERT INTO Fees (student_id, fee_amount, paid_date, status) 
+            INSERT INTO fees (student_id, fee_amount, paid_date, status) 
             VALUES (?, ?, ?, ?)
         `;
         pool.query(insertQuery, [student_id, fee_amount, paid_date, status], (err, results) => {
@@ -336,7 +336,7 @@ router.post('/add-fee', (req, res) => {
 
 router.get('/confirm-delete/:id', (req, res) => {
     const feeId = req.params.id;
-    const query = `SELECT fee_id, fee_amount, paid_date FROM Fees WHERE fee_id = ?`;
+    const query = `SELECT fee_id, fee_amount, paid_date FROM fees WHERE fee_id = ?`;
 
     pool.query(query, [feeId], (err, results) => {
         if (err) {
@@ -352,7 +352,7 @@ router.get('/confirm-delete/:id', (req, res) => {
 
 router.post('/delete-fee/:id', (req, res) => {
     const feeId = req.params.id;
-    const deleteQuery = `DELETE FROM Fees WHERE fee_id = ?`;
+    const deleteQuery = `DELETE FROM fees WHERE fee_id = ?`;
 
     pool.query(deleteQuery, [feeId], (err, results) => {
         if (err) {
@@ -367,7 +367,7 @@ router.get('/receipt/:fee_id', (req, res) => {
     const feeId = req.params.fee_id;
     const query = `
         SELECT f.fee_id, f.fee_amount, f.paid_date, f.status, s.name AS student_name, s.roll_number
-        FROM Fees f
+        FROM fees f
         JOIN students s ON f.student_id = s.student_id
         WHERE f.fee_id = ?
     `;
