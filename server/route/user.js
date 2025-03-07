@@ -1,164 +1,286 @@
-const express=require("express");
-const router=express.Router();
-const usercontroller=require("../controller/usercontroller");
-const db = require("../../config/db");
-require('dotenv').config();
-const { updateStudent } = require('../controller/edit'); // Import the updateStudent function
-const moment = require('moment'); // Install it using: npm install moment
+// const express=require("express");
+// const router=express.Router();
+// const usercontroller=require("../controller/usercontroller");
+// const db = require("../../config/db");
+// require('dotenv').config();
+// const { updateStudent } = require('../controller/edit'); // Import the updateStudent function
+// const moment = require('moment'); // Install it using: npm install moment
 
 
 
-// Add this root route
-router.get('/', (req, res) => {
-  res.redirect('/pp'); // Redirect to student list
-});
+// // Add this root route
+// router.get('/', (req, res) => {
+//   res.redirect('/pp'); // Redirect to student list
+// });
 
 
-const auth=require("../../routes/auth")
+// const auth=require("../../routes/auth")
 
 
-// router.get("/",usercontroller.view)
+// // router.get("/",usercontroller.view)
 
-router.get('/pp',(req,res)=>{
+// router.get('/pp',(req,res)=>{
 
-  if (!req.session.user) return res.redirect('/signup'); // Ensure user is logged in
+//   if (!req.session.user) return res.redirect('/signup'); // Ensure user is logged in
 
-  const isAdmin = req.session.user && req.session.user.role === "admin"; // Check if user is admin
+//   const isAdmin = req.session.user && req.session.user.role === "admin"; // Check if user is admin
 
 
-    let selec=`SELECT * FROM students`
-    db.query(selec,(err,result)=>{
-        if (err) {
-            console.error('Error fetching students:', err);
-            res.status(500).send('Internal Server Error');
-        } else {
-            res.render('home', { students: result ,isAdmin:isAdmin});
-        }
-    });
-})
-// Render form to add a new student
-router.get('/addstudent', (req, res) => {
-    res.render('addstudent'); // Render the form view
-});
+//     let selec=`SELECT * FROM students`
+//     db.query(selec,(err,result)=>{
+//         if (err) {
+//             console.error('Error fetching students:', err);
+//             res.status(500).send('Internal Server Error');
+//         } else {
+//             res.render('home', { students: result ,isAdmin:isAdmin});
+//         }
+//     });
+// })
+// // Render form to add a new student
+// router.get('/addstudent', (req, res) => {
+//     res.render('addstudent'); // Render the form view
+// });
 
-// Add a new student to the database
-router.post('/add-student', (req, res) => {
-    let { name, roll_number, clss, parent_contact } = req.body;
+// // Add a new student to the database
+// router.post('/add-student', (req, res) => {
+//     let { name, roll_number, clss, parent_contact } = req.body;
 
-    const insertQuery = `
-        INSERT INTO Students (name, roll_number, class, parent_contact)
-        VALUES ('${name}','${roll_number}','${clss}','${parent_contact}')
-    `;
-    db.query(insertQuery, (err,result) => {
-        if (err) {
-            console.error('Error adding student:', err);
-            res.status(500).send('Failed to add student.');
-        } else {
-            res.redirect('/pp'); // Redirect to list all students
-        }
-    });
-});
+//     const insertQuery = `
+//         INSERT INTO Students (name, roll_number, class, parent_contact)
+//         VALUES ('${name}','${roll_number}','${clss}','${parent_contact}')
+//     `;
+//     db.query(insertQuery, (err,result) => {
+//         if (err) {
+//             console.error('Error adding student:', err);
+//             res.status(500).send('Failed to add student.');
+//         } else {
+//             res.redirect('/pp'); // Redirect to list all students
+//         }
+//     });
+// });
 
-// Route to fetch and view a student by ID or roll number
-router.get("/student/:id", (req, res) => {
-    // const studentId = req.params.id; // Get the student ID or roll number from the URL params
+// // Route to fetch and view a student by ID or roll number
+// router.get("/student/:id", (req, res) => {
+//     // const studentId = req.params.id; // Get the student ID or roll number from the URL params
 
-    const query = `
-        SELECT * FROM Students WHERE student_id=?  OR roll_number = ?
-    `;
+//     const query = `
+//         SELECT * FROM Students WHERE student_id=?  OR roll_number = ?
+//     `;
       
-    db.query(query,[req.params.id, req.params.id],  (err, result) => {
-        if (err) {
-            console.error("Error fetching student details:", err);
-            res.status(500).send("Internal Server Error");
-        } else if (result.length === 0) {
-            res.status(404).send("Student not found");
-        } else {
-            res.render("studentDetail", { student: result[0] });
-        }
-    });
-});
+//     db.query(query,[req.params.id, req.params.id],  (err, result) => {
+//         if (err) {
+//             console.error("Error fetching student details:", err);
+//             res.status(500).send("Internal Server Error");
+//         } else if (result.length === 0) {
+//             res.status(404).send("Student not found");
+//         } else {
+//             res.render("studentDetail", { student: result[0] });
+//         }
+//     });
+// });
 
-// Route to search for students by ID or Roll Number
-router.get('/search', (req, res) => {
-  if (!req.session.user) return res.redirect('/signup'); // Ensure user is logged in
+// // Route to search for students by ID or Roll Number
+// router.get('/search', (req, res) => {
+//   if (!req.session.user) return res.redirect('/signup'); // Ensure user is logged in
 
-    const searchQuery = req.query.query; // Get the search input from query params
-   console.log('Search Query Input:', searchQuery);
-    // Query to find students matching the ID or Roll Number
-    const query = `
-        SELECT * FROM Students WHERE student_id = ? OR roll_number = ?
-    `;
+//     const searchQuery = req.query.query; // Get the search input from query params
+//    console.log('Search Query Input:', searchQuery);
+//     // Query to find students matching the ID or Roll Number
+//     const query = `
+//         SELECT * FROM Students WHERE student_id = ? OR roll_number = ?
+//     `;
 
-    db.query(query, [searchQuery, searchQuery], (err, results) => {
-        if (err) {
-            console.error('Error searching for students:', err);
-            return res.status(500).send('please signup is required');
-        }
+//     db.query(query, [searchQuery, searchQuery], (err, results) => {
+//         if (err) {
+//             console.error('Error searching for students:', err);
+//             return res.status(500).send('please signup is required');
+//         }
 
-        if (results.length === 0) {
-            return res.send('<h2>No matching students found.</h2><a href="/pp">Back to Student List</a>');
-        }
+//         if (results.length === 0) {
+//             return res.send('<h2>No matching students found.</h2><a href="/pp">Back to Student List</a>');
+//         }
 
-        // Render the search results
-        res.render('searchresults', { searchResults: results });
-    });
-});
+//         // Render the search results
+//         res.render('searchresults', { searchResults: results });
+//     });
+// });
 
-// GET route to render edit form with student data
-router.get('/edit-student/:id', (req, res) => {
-    const studentId = req.params.id;
-    const selectQuery = `SELECT * FROM Students WHERE student_id = ?`;
+// // GET route to render edit form with student data
+// router.get('/edit-student/:id', (req, res) => {
+//     const studentId = req.params.id;
+//     const selectQuery = `SELECT * FROM Students WHERE student_id = ?`;
   
-    db.query(selectQuery, [studentId], (err, result) => {
-      if (err) {
-        console.error('Error fetching student data:', err);
-        res.status(500).send('Internal Server Error');
-      } else {
-        res.render('editstudent', { student: result[0] });
-      }
-    });
-  });
+//     db.query(selectQuery, [studentId], (err, result) => {
+//       if (err) {
+//         console.error('Error fetching student data:', err);
+//         res.status(500).send('Internal Server Error');
+//       } else {
+//         res.render('editstudent', { student: result[0] });
+//       }
+//     });
+//   });
   
-  // POST route to update student data
-  router.post('/edit-student/:id', (req, res) => {
-    const { name, roll_number, clss, parent_contact } = req.body;
-    const studentId = req.params.id;
+//   // POST route to update student data
+//   router.post('/edit-student/:id', (req, res) => {
+//     const { name, roll_number, clss, parent_contact } = req.body;
+//     const studentId = req.params.id;
   
-    const updateQuery = `UPDATE Students SET name = ?, roll_number = ?, class = ?, parent_contact = ? WHERE student_id = ?`;
+//     const updateQuery = `UPDATE Students SET name = ?, roll_number = ?, class = ?, parent_contact = ? WHERE student_id = ?`;
   
-    db.query(updateQuery, [name, roll_number, clss, parent_contact, studentId], (err, result) => {
-      if (err) {
-        console.error('Error updating student:', err);
-        res.status(500).send('Internal Server Error');
-      } else {
-        // Show success message with a link back to the list
-        res.render('updatesucess', { message: 'Student updated successfully!', link: '/pp' });
+//     db.query(updateQuery, [name, roll_number, clss, parent_contact, studentId], (err, result) => {
+//       if (err) {
+//         console.error('Error updating student:', err);
+//         res.status(500).send('Internal Server Error');
+//       } else {
+//         // Show success message with a link back to the list
+//         res.render('updatesucess', { message: 'Student updated successfully!', link: '/pp' });
        
-      }
-    });
-  });
+//       }
+//     });
+//   });
   
-// Route to delete a student
-router.get('/delete-student/:id', (req, res) => {
-    const studentId = req.params.id;
-    const deleteQuery = `DELETE FROM students WHERE student_id = ?`;
+// // Route to delete a student
+// router.get('/delete-student/:id', (req, res) => {
+//     const studentId = req.params.id;
+//     const deleteQuery = `DELETE FROM students WHERE student_id = ?`;
   
-    db.query(deleteQuery, [studentId], (err, result) => {
-      if (err) {
-        console.error('Error deleting student:', err);
-        res.status(500).send('Internal Server Error');
-      } else {
+//     db.query(deleteQuery, [studentId], (err, result) => {
+//       if (err) {
+//         console.error('Error deleting student:', err);
+//         res.status(500).send('Internal Server Error');
+//       } else {
       
-        res.render('deletesucess', { message: 'Student Deleted successfully!', link: '/pp' });
-      }
-    });
+//         res.render('deletesucess', { message: 'Student Deleted successfully!', link: '/pp' });
+//       }
+//     });
+//   });
+  
+
+  
+
+
+// module.exports=router;
+
+
+const express = require("express");
+const router = express.Router();
+const usercontroller = require("../controller/usercontroller");
+const pool = require("../../config/db"); // Change to pool
+require('dotenv').config();
+const { updateStudent } = require('../controller/edit');
+const moment = require('moment');
+
+router.get('/', (req, res) => {
+  res.redirect('/pp');
+});
+
+router.get('/pp', (req, res) => {
+  if (!req.session.user) return res.redirect('/signup');
+  const isAdmin = req.session.user && req.session.user.role === "admin";
+  let selec = `SELECT * FROM students`;
+  pool.query(selec, (err, result) => { // Change db to pool
+    if (err) {
+      console.error('Error fetching students:', err);
+      res.status(500).send('Database error: ' + err.message);
+    } else {
+      res.render('home', { students: result, isAdmin: isAdmin });
+    }
   });
-  
+});
 
-  
+router.get('/addstudent', (req, res) => {
+  res.render('addstudent');
+});
 
+router.post('/add-student', (req, res) => {
+  let { name, roll_number, clss, parent_contact } = req.body;
+  const insertQuery = `
+      INSERT INTO students (name, roll_number, class, parent_contact)
+      VALUES (?, ?, ?, ?)
+  `;
+  pool.query(insertQuery, [name, roll_number, clss, parent_contact], (err, result) => { // Change db to pool
+    if (err) {
+      console.error('Error adding student:', err);
+      res.status(500).send('Database error: ' + err.message);
+    } else {
+      res.redirect('/pp');
+    }
+  });
+});
 
-module.exports=router;
+router.get("/student/:id", (req, res) => {
+  const query = `
+      SELECT * FROM students WHERE student_id = ? OR roll_number = ?
+  `;
+  pool.query(query, [req.params.id, req.params.id], (err, result) => { // Change db to pool
+    if (err) {
+      console.error("Error fetching student details:", err);
+      res.status(500).send("Database error: " + err.message);
+    } else if (result.length === 0) {
+      res.status(404).send("Student not found");
+    } else {
+      res.render("studentDetail", { student: result[0] });
+    }
+  });
+});
 
+router.get('/search', (req, res) => {
+  if (!req.session.user) return res.redirect('/signup');
+  const searchQuery = req.query.query;
+  console.log('Search Query Input:', searchQuery);
+  const query = `
+      SELECT * FROM students WHERE student_id = ? OR roll_number = ?
+  `;
+  pool.query(query, [searchQuery, searchQuery], (err, results) => { // Change db to pool
+    if (err) {
+      console.error('Error searching for students:', err);
+      return res.status(500).send('Database error: ' + err.message);
+    }
+    if (results.length === 0) {
+      return res.send('<h2>No matching students found.</h2><a href="/pp">Back to Student List</a>');
+    }
+    res.render('searchresults', { searchResults: results });
+  });
+});
 
+router.get('/edit-student/:id', (req, res) => {
+  const studentId = req.params.id;
+  const selectQuery = `SELECT * FROM students WHERE student_id = ?`;
+  pool.query(selectQuery, [studentId], (err, result) => { // Change db to pool
+    if (err) {
+      console.error('Error fetching student data:', err);
+      res.status(500).send('Database error: ' + err.message);
+    } else {
+      res.render('editstudent', { student: result[0] });
+    }
+  });
+});
+
+router.post('/edit-student/:id', (req, res) => {
+  const { name, roll_number, clss, parent_contact } = req.body;
+  const studentId = req.params.id;
+  const updateQuery = `UPDATE students SET name = ?, roll_number = ?, class = ?, parent_contact = ? WHERE student_id = ?`;
+  pool.query(updateQuery, [name, roll_number, clss, parent_contact, studentId], (err, result) => { // Change db to pool
+    if (err) {
+      console.error('Error updating student:', err);
+      res.status(500).send('Database error: ' + err.message);
+    } else {
+      res.render('updatesucess', { message: 'Student updated successfully!', link: '/pp' });
+    }
+  });
+});
+
+router.get('/delete-student/:id', (req, res) => {
+  const studentId = req.params.id;
+  const deleteQuery = `DELETE FROM students WHERE student_id = ?`;
+  pool.query(deleteQuery, [studentId], (err, result) => { // Change db to pool
+    if (err) {
+      console.error('Error deleting student:', err);
+      res.status(500).send('Database error: ' + err.message);
+    } else {
+      res.render('deletesucess', { message: 'Student Deleted successfully!', link: '/pp' });
+    }
+  });
+});
+
+module.exports = router;
