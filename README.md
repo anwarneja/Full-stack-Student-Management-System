@@ -4,7 +4,7 @@ A full-stack web application for managing student data, attendance, and fee paym
 
 ## 🚀 Live Demo  
 
-You can view the live demo of the Student Management System [here](#). *(Replace with actual live demo link)*  
+You can view the live demo of the Student Management System [URL: https://full-stack-student-management-system.vercel.app](#). *(Replace with actual live demo link)*  
 
 ## 🛠 Technologies Used  
 
