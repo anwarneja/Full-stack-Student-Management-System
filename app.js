@@ -77,11 +77,6 @@ app.get("/pp", (req, res) => {
 const { isAuthenticated, isAdmin, isTeacher, isStudent } = require("./middlewares/middleware");
 
 
-// Add this root route
-router.get('/', (req, res) => {
-    res.redirect('/pp'); // Redirect to student list
-});
-
 
 // Start the server
 // app.listen(3000, (err, result) => {

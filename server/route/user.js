@@ -6,6 +6,14 @@ require('dotenv').config();
 const { updateStudent } = require('../controller/edit'); // Import the updateStudent function
 const moment = require('moment'); // Install it using: npm install moment
 
+
+
+// Add this root route
+router.get('/', (req, res) => {
+  res.redirect('/pp'); // Redirect to student list
+});
+
+
 const auth=require("../../routes/auth")
 
 
