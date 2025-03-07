@@ -81,6 +81,8 @@ router.get("/student/:id", (req, res) => {
 
 // Route to search for students by ID or Roll Number
 router.get('/search', (req, res) => {
+  if (!req.session.user) return res.redirect('/signup'); // Ensure user is logged in
+
     const searchQuery = req.query.query; // Get the search input from query params
    console.log('Search Query Input:', searchQuery);
     // Query to find students matching the ID or Roll Number
@@ -91,7 +93,7 @@ router.get('/search', (req, res) => {
     db.query(query, [searchQuery, searchQuery], (err, results) => {
         if (err) {
             console.error('Error searching for students:', err);
-            return res.status(500).send('Internal Server Error');
+            return res.status(500).send('please signup is required');
         }
 
         if (results.length === 0) {
