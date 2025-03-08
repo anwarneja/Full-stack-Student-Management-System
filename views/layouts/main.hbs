@@ -558,8 +558,7 @@ footer .text-light {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            overflow-x: hidden; /* Prevents horizontal scroll */
-            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden !important; /* Keep your original */
         }
         .navbar {
             background: linear-gradient(45deg, #021B79, #0A1931, #185ADB) !important;
@@ -572,7 +571,7 @@ footer .text-light {
             font-size: 1.1rem;
             text-transform: uppercase;
             font-weight: bold;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease, letter-spacing 0.3s ease;
         }
         .nav-link::before {
             content: '';
@@ -586,6 +585,8 @@ footer .text-light {
         }
         .nav-link:hover {
             color: #f39c12;
+            transform: scale(1.1);
+            letter-spacing: 1px;
         }
         .nav-link:hover::before {
             width: 100%;
@@ -601,42 +602,9 @@ footer .text-light {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .navbar-nav {
-            margin: 0 auto; /* Center on large screens */
-        }
-        .navbar-nav .nav-item {
-            margin: 0 0.7rem;
-        }
         .navbar-toggler-icon {
             background-color: #f39c12;
         }
-
-        /* Responsive Adjustments */
-        @media (max-width: 991px) { /* Below lg breakpoint */
-            .navbar-nav {
-                margin: 0; /* Remove centering on collapse */
-                text-align: center; /* Center items in collapsed menu */
-            }
-            .nav-item {
-                margin: 0.5rem 0; /* Vertical spacing in collapsed menu */
-            }
-            .nav-link {
-                font-size: 1rem; /* Slightly smaller on mobile */
-                transform: none; /* Disable scale on mobile */
-            }
-            .nav-link:hover {
-                transform: none; /* No scaling on hover */
-            }
-            .form-control, .btn-sm {
-                width: 100%; /* Full width on mobile */
-                margin: 0.5rem 0; /* Spacing */
-            }
-            .d-flex {
-                flex-direction: column; /* Stack search on mobile */
-                align-items: center;
-            }
-        }
-
         /* Footer */
         footer {
             background: linear-gradient(45deg, #021B79, #0A1931, #185ADB) !important;
@@ -646,29 +614,31 @@ footer .text-light {
             padding: 20px 0;
         }
         footer h5 {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.6rem;
             font-weight: 700;
-            color: #ffffff;
         }
         footer p {
+            font-family: 'Open Sans', sans-serif;
             font-size: 1rem;
             font-weight: 400;
             color: #d1d1d1;
-            font-family: 'Open Sans', sans-serif;
         }
         footer a {
             text-decoration: none;
             color: #f8f9fa;
-            font-weight: 700;
             transition: color 0.3s ease;
+            font-weight: 700;
+        }
+        footer a:hover {
+            color: #007bff;
         }
         footer .bi {
             font-size: 2rem;
             transition: color 0.3s ease;
         }
-        footer .quick-links ul li a:hover,
-        footer .social-media .d-flex a:hover {
-            color: #007bff !important;
+        footer .bi:hover {
+            color: #007bff;
         }
         footer .container {
             max-width: 1140px;
@@ -676,13 +646,16 @@ footer .text-light {
         footer .row {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap; /* Ensure wrapping on small screens */
         }
         footer .col-md-4 {
             text-align: center;
-            flex: 1 1 100%; /* Full width on small screens */
-            max-width: 100%;
-            margin-bottom: 1rem;
+        }
+        footer .col-md-4 ul {
+            list-style: none;
+            padding: 0;
+        }
+        footer .col-md-4 ul li {
+            margin: 8px 0;
         }
         footer .d-flex {
             justify-content: center;
@@ -693,10 +666,34 @@ footer .text-light {
             margin: 15px 0;
         }
 
-        @media (min-width: 768px) { /* md and up */
+        /* Responsiveness Fixes */
+        @media (max-width: 991px) { /* Navbar collapse point */
+            .navbar-nav .nav-item {
+                margin: 0.5rem 0; /* Stack vertically */
+            }
+            .nav-link {
+                font-size: 1rem; /* Slightly smaller */
+                transform: none; /* No scaling on mobile */
+            }
+            .nav-link:hover {
+                transform: none; /* Keep original hover effect off */
+            }
+            .d-flex {
+                flex-direction: column; /* Stack search form */
+                align-items: stretch; /* Keep search compact */
+            }
+            .form-control, .btn-sm {
+                margin: 0.25rem 0; /* Smaller spacing */
+            }
+        }
+        @media (max-width: 767px) { /* Footer stack point */
+            footer .row {
+                flex-direction: column; /* Stack footer columns */
+            }
             footer .col-md-4 {
-                flex: 1 1 33.33%; /* 3 columns on medium+ screens */
-                max-width: 33.33%;
+                flex: 1 1 100%; /* Full width */
+                max-width: 100%;
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -752,12 +749,12 @@ footer .text-light {
     <footer class="footer mt-auto py-4">
         <div class="container text-center">
             <div class="row">
-                <div class="col-md-4 mb-3 about-us">
+                <div class="col-md-4 mb-3">
                     <h5 class="text-light">About Us</h5>
                     <p>Empowering education with a seamless student management system. Our goal is to enhance academic workflows and create an efficient environment for institutions.</p>
                     <p><strong>Join us in revolutionizing education through technology!</strong></p>
                 </div>
-                <div class="col-md-4 mb-3 quick-links">
+                <div class="col-md-4 mb-3">
                     <h5 class="text-light">Quick Links</h5>
                     <ul class="list-unstyled" style="font-weight: bold;">
                         <li><a href="/pp" class="text-light">Home</a></li>
@@ -766,7 +763,7 @@ footer .text-light {
                         <li><a href="/attendance" class="text-light">Attendance</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-3 social-media">
+                <div class="col-md-4 mb-3">
                     <h5 class="text-light">CONTACT US</h5>
                     <div class="d-flex">
                         <a href="https://instagram.com/neja.anwar" class="text-light me-3" target="_blank"><i class="bi bi-instagram"></i></a>
