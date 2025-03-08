@@ -1,4 +1,4 @@
-{{!-- <!DOCTYPE html>
+{{!-- {{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -275,4 +275,125 @@
     </script>
 
 </body>
-</html>
+</html> --}}
+<!-- views/studentDetails.hbs -->
+<div class="student-info" id="studentDetails">
+  <h1>Student Details</h1>
+  <ul>
+    <li><strong>Student ID:</strong> <span>{{student.student_id}}</span></li>
+    <li><strong>Name:</strong> <span>{{student.name}}</span></li>
+    <li><strong>Roll Number:</strong> <span>{{student.roll_number}}</span></li>
+    <li><strong>Class:</strong> <span>{{student.class}}</span></li>
+    <li><strong>Parent Contact:</strong> <span>{{student.parent_contact}}</span></li>
+  </ul>
+  <div class="back-link">
+    <a href="/pp" class="btn btn-custom">Back to Student List</a>
+  </div>
+  <button id="downloadBtn" class="btn btn-primary w-100 mt-3">Download PDF</button>
+</div>
+
+<style>
+  /* Google Font */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+  .student-info {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 40px auto;
+    border: 1px solid #f0f0f0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .student-info ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .student-info ul li {
+    font-size: 1.2rem;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+  }
+
+  .student-info ul li:last-child {
+    border-bottom: none;
+  }
+
+  .student-info ul li strong {
+    color: #333;
+    font-weight: 600;
+  }
+
+  .student-info ul li span {
+    color: #555;
+  }
+
+  .btn-custom {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .btn-custom:hover {
+    background-color: #e67e22;
+  }
+
+  .back-link {
+    margin-top: 25px;
+  }
+
+  /* Responsive Fixes */
+  @media (max-width: 767px) {
+    .student-info {
+      padding: 15px; /* Reduce padding */
+      margin: 20px auto; /* Smaller margin */
+      max-width: 100%; /* Full width on mobile */
+    }
+
+    h1 {
+      font-size: 1.8rem; /* Smaller title */
+    }
+
+    .student-info ul li {
+      font-size: 1rem; /* Smaller text */
+      padding: 10px 0; /* Less padding */
+      flex-direction: column; /* Stack label and value */
+      text-align: left;
+    }
+
+    .btn-custom, #downloadBtn {
+      padding: 10px; /* Smaller buttons */
+      font-size: 0.9rem; /* Smaller text */
+    }
+  }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  document.getElementById("downloadBtn").addEventListener("click", function() {
+    const content = document.getElementById('studentDetails');
+    html2pdf()
+      .from(content)
+      .save('Student-Details.pdf');
+  });
+</script>
