@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -28,4 +28,77 @@
 <script src="../server/controller/edit.js"></script> <!-- Add this in your `editstudent.ejs` -->
 
 </body>
-</html>
+</html> --}}
+<!-- views/editstudent.hbs -->
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Edit Student</h1>
+  <form action="/edit-student/{{student.student_id}}" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Student Name</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{student.name}}" required>
+    </div>
+    <div class="mb-3">
+      <label for="roll_number" class="form-label">Roll Number</label>
+      <input type="text" class="form-control" id="roll_number" name="roll_number" value="{{student.roll_number}}" required>
+    </div>
+    <div class="mb-3">
+      <label for="class" class="form-label">Class</label>
+      <input type="text" class="form-control" id="class" name="clss" value="{{student.class}}" required>
+    </div>
+    <div class="mb-3">
+      <label for="parent_contact" class="form-label">Parent Contact</label>
+      <input type="text" class="form-control" id="parent_contact" name="parent_contact" value="{{student.parent_contact}}" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Update Student</button>
+  </form>
+</div>
+
+<style>
+  .container {
+    max-width: 600px; /* Limit width on desktop */
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  /* Responsive Fixes */
+  @media (max-width: 767px) {
+    .container {
+      max-width: 100%; /* Full width on mobile */
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 1.5rem; /* Smaller title */
+    }
+
+    .form-control {
+      font-size: 0.9rem; /* Smaller input text */
+      padding: 8px; /* Less padding */
+    }
+
+    .btn-primary {
+      padding: 10px; /* Smaller button */
+      font-size: 0.9rem;
+    }
+  }
+</style>
