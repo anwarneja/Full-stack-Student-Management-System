@@ -39,7 +39,7 @@ router.get('/attendance', (req, res) => {
         JOIN students ON attendance.student_id = students.student_id
     `;
     
-    db.query(query, (err, results) => {
+    pool.query(query, (err, results) => {
         if (err) {
             console.error("Error fetching attendance:", err);
             return res.status(500).send("Database error");
@@ -53,7 +53,7 @@ router.get('/attendance', (req, res) => {
 router.get('/attendance/add', (req, res) => {
     const query = 'SELECT * FROM students';  // Get all students
     
-    db.query(query, (err, students) => {
+    pool.query(query, (err, students) => {
         if (err) {
             console.error("Error fetching students:", err);
             return res.status(500).send("Database error");
