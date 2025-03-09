@@ -28,9 +28,9 @@ const db = require("../config/db");
 router.get('/attendance', (req, res) => {
     if (!req.session.user) return res.redirect('/signup'); // Ensure user is logged in
 
-    // const isAdmin = req.session.user && req.session.user.role === "admin"; // Check if user is admin
+    const isAdmin = req.session.user && req.session.user.role === "admin"; // Check if user is admin
 
-    const isAdmin = req.session.user.role === "admin"; // Check if user is admin
+    // const isAdmin = req.session.user.role === "admin"; // Check if user is admin
 
 
     const query = `
