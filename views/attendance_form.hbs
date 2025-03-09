@@ -49,6 +49,8 @@
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div> --}}
+
+{{!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,4 +94,100 @@
 </div>
 
 </body>
-</html>
+</html> 
+
+<!-- views/attendance_form.hbs -->
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Record Attendance</h2>
+  <div class="form-container">
+    <form action="/attendance/add" method="POST" class="p-4 shadow-lg">
+      <div class="mb-3">
+        <label for="student_id" class="form-label">Student</label>
+        <select name="student_id" id="student_id" class="form-select">
+          {{#each students}}
+            <option value="{{this.student_id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="attendance_date" class="form-label">Date</label>
+        <input type="date" name="attendance_date" id="attendance_date" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Status</label><br>
+        <input type="radio" name="status" value="Present" checked> Present
+        <input type="radio" name="status" value="Absent"> Absent
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .form-container {
+    max-width: 500px; /* Limit width on desktop */
+    margin: 0 auto; /* Center form */
+    background-color: #fff;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: #333;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .form-select, .form-control {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .btn-success {
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #28a745;
+    border: none;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+  /* Radio button styling */
+  input[type="radio"] {
+    margin-right: 5px;
+    margin-left: 10px;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 767px) {
+    .form-container {
+      max-width: 100%; /* Full width on mobile */
+      padding: 15px; /* Smaller padding */
+    }
+
+    h2 {
+      font-size: 1.5rem; /* Smaller title */
+    }
+
+    .form-select, .form-control {
+      font-size: 0.9rem; /* Smaller inputs */
+      padding: 8px;
+    }
+
+    .btn-success {
+      padding: 10px; /* Smaller button */
+      font-size: 0.9rem;
+    }
+
+    input[type="radio"] {
+      margin-left: 8px; /* Adjust spacing */
+    }
+  }
+</style>
