@@ -22,7 +22,7 @@
 // module.exports = router;
 const express = require('express');
 const router = express.Router();
-const db = require("../config/db");
+const pool = require("../config/db");
 
 // Route to display attendance management page
 router.get('/attendance', (req, res) => {
@@ -69,7 +69,7 @@ router.post('/attendance/add', (req, res) => {
 
     const query = "INSERT INTO attendance (student_id, attendance_date, status) VALUES (?, ?, ?)";
     
-    db.query(query, [student_id, attendance_date, status], (err, result) => {
+    pool.query(query, [student_id, attendance_date, status], (err, result) => {
         if (err) {
             console.error("Error inserting attendance:", err);
             return res.status(500).send("Database error");
@@ -95,7 +95,7 @@ router.get('/attendance/reports', (req, res) => {
         GROUP BY s.student_id, s.name
     `;
 
-    db.query(sql, [startDate, endDate], (err, results) => {
+    pool.query(sql, [startDate, endDate], (err, results) => {
         if (err) throw err;
         res.render('attendance_reports', { results, startDate, endDate });
     });
@@ -110,7 +110,7 @@ router.post('/attendance/delete/:id', (req, res) => {
     const attendanceId = req.params.id;
     const deleteQuery = 'DELETE FROM attendance WHERE attendance_id = ?';
 
-    db.query(deleteQuery, [attendanceId], (err, result) => {
+    pool.query(deleteQuery, [attendanceId], (err, result) => {
         if (err) {
             console.error('Error deleting attendance record:', err);
             return res.status(500).send('Error deleting attendance');
