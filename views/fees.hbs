@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -104,4 +104,130 @@
         </tr>
         {{/each}}
     </tbody>
-</table> - --}}
+</table> - --}} --}}
+<!-- views/fees.hbs -->
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Fee Records</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Amount</th>
+          <th>Paid Date</th>
+          <th>Status</th>
+          <th class="text-end">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each fees}}
+        <tr>
+          <td>{{this.fee_id}}</td>
+          <td>{{this.student_name}}</td>
+          <td>{{this.fee_amount}}</td>
+          <td>{{this.paid_date}}</td>
+          <td>{{this.status}}</td>
+          <td class="text-end">
+            <a href="/receipt/{{this.fee_id}}" class="btn btn-info btn-sm">View Receipt</a>
+            {{#if ../isAdmin}}
+              <a href="/edit-fee/{{this.fee_id}}" class="btn btn-primary btn-sm">Edit</a>
+              <a href="/confirm-delete/{{this.fee_id}}" class="btn btn-danger btn-sm">Delete</a>
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{#if ./isAdmin}}
+  <div class="d-flex justify-content-between mt-3 flex-wrap">
+    <a href="/add-fee" class="btn btn-success mb-2">Add New Fee</a>
+    <a href="/notify-due-fees" class="btn btn-warning mb-2">Send Reminder</a>
+  </div>
+  {{/if}}
+</div>
+
+<style>
+  .thead-dark {
+    background-color: #343a40;
+    color: white;
+  }
+
+  .table {
+    font-size: 1rem;
+  }
+
+  .btn-info {
+    background-color: #17a2b8;
+    border: none;
+  }
+
+  .btn-info:hover {
+    background-color: #138496;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+  .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #212529;
+  }
+
+  .btn-warning:hover {
+    background-color: #e0a800;
+  }
+
+  /* Responsive Fixes */
+  @media (max-width: 767px) {
+    .container {
+      padding: 10px;
+    }
+
+    .table {
+      font-size: 0.9rem; /* Smaller text */
+    }
+
+    .btn-sm {
+      padding: 5px 10px; /* Smaller buttons */
+      font-size: 0.8rem;
+    }
+
+    .btn-success, .btn-warning {
+      padding: 8px 15px; /* Adjust larger buttons */
+      font-size: 0.9rem;
+      width: 100%; /* Stack on mobile */
+    }
+
+    .d-flex {
+      flex-direction: column; /* Stack buttons vertically */
+      gap: 10px; /* Space between */
+    }
+  }
+</style>
