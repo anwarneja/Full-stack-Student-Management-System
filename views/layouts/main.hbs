@@ -388,7 +388,18 @@ footer .text-light {
             color: #007bff !important; /* Blue color */
             transform: scale(1.2) translate(5px, 5px); /* Scale and translate */
         }
-
+footer .social-media .d-flex {
+      display: inline-flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 20px !important;
+      justify-content: center;
+      align-items: center;
+      min-width: 200px;
+    }
+    footer .social-media .d-flex a {
+      display: inline-block;
+    }
         footer .social-media .d-flex a:hover {
             color: #007bff !important; /* Blue color */
             transform: scale(1.2) translate(5px, 5px); /* Scale and translate */
@@ -442,6 +453,16 @@ footer .text-light {
             font-family: 'Poppins', sans-serif;
             font-weight: 400;
         }
+        footer .footer-bottom {
+      display: block !important;
+      white-space: nowrap;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #f8f9fa;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     </style>
 </head>
@@ -539,7 +560,8 @@ footer .text-light {
             </div>
         </div>
         <hr class="border-light">
-        <p class="text-light mb-0">© 2025 SMS. All rights reserved. Powered by <a href="https://t.me/know82" style="color: tomato;">A-SQUARE-RADIANT-SOLUTIONS.</a> | Contact: +251930836011</p>
+        <div class="footer-bottom">
+        <p class="text-light mb-0">© 2025 SMS. All rights reserved. Powered by <a href="https://t.me/know82" style="color: tomato;">A-SQUARE-RADIANT-SOLUTIONS.</a> | Contact: +251930836011</p></div>
     </div>
 </footer>
 
