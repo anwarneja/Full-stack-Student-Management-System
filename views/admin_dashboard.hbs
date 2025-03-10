@@ -1,13 +1,8 @@
 <!-- views/admin_dashboard.hbs -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Admin Dashboard</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <a href="/create_user" class="btn btn-success ms-auto">+ Create New User</a>
-    </div>
+    <a href="/create_user" class="btn btn-success ms-auto">+ Create New User</a>
   </div>
 </nav>
 
@@ -48,25 +43,17 @@
 </div>
 
 <style>
-  body {
-    background: #f4f7f6;
-    font-family: 'Poppins', sans-serif;
-  }
-
   .navbar {
-    background: linear-gradient(45deg, #021B79, #0A1931, #185ADB) !important;
+    background: linear-gradient(45deg, #021B79, #0A1931, #185ADB);
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 1rem; /* Consistent padding */
   }
 
   .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white !important;
-  }
-
-  .navbar-toggler-icon {
-    filter: invert(1); /* White icon */
+    color: white;
   }
 
   .table-container {
@@ -86,7 +73,7 @@
   }
 
   .table tbody tr:hover {
-    background-color: #C0FFC0 !important;
+    background-color: #C0FFC0;
     transition: background 0.3s ease-in-out;
   }
 
@@ -108,6 +95,10 @@
       margin-top: 2rem; /* Reduce top margin */
     }
 
+    .navbar {
+      padding: 0.75rem; /* Smaller padding */
+    }
+
     .navbar-brand {
       font-size: 1.2rem; /* Smaller title */
     }
@@ -127,6 +118,16 @@
     .btn-success, .btn-danger {
       font-size: 0.9rem; /* Smaller buttons */
       padding: 6px 10px;
+    }
+
+    .container-fluid {
+      flex-direction: column; /* Stack navbar items */
+      align-items: flex-start;
+    }
+
+    .btn-success {
+      margin-top: 10px; /* Space below brand */
+      width: 100%; /* Full width on mobile */
     }
   }
 </style>
