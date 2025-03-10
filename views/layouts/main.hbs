@@ -94,6 +94,7 @@
       color: #ffffff;
     }
     footer p {
+        
       font-family: 'Poppins', sans-serif;
       font-size: 1rem;
       font-weight: 400;
@@ -162,13 +163,18 @@
       font-weight: 700;
     }
     footer .footer-bottom {
-      display: inline-block; /* Keep text together */
+      display: block !important; /* Keep text together */
       white-space: nowrap; /* Prevent splitting */
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
       font-size: 1rem;
       color: #f8f9fa;
+      overflow: hidden; /* Prevent overflow issues */
+  text-overflow: ellipsis; /* Handle edge cases */
     }
+    footer .footer-bottom span {
+  display: inline; /* Keep text inline */
+}
     @media (max-width: 767px) {
       footer .row {
         flex-direction: column;
@@ -181,7 +187,7 @@
         min-width: 0; /* Adjust for smaller screens */
       }
       footer .footer-bottom {
-        white-space: normal; /* Allow wrapping on mobile */
+        white-space: normal; /* Allow wrapping on mobile */line-height: 1.4;
         font-size: 0.9rem;
         text-align: center;
       }
