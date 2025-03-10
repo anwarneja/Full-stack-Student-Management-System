@@ -1,7 +1,7 @@
 <!-- views/edit-student.hbs -->
-<div class="container mt-5">
-  <h1 class="text-center mb-4">Edit Student</h1>
-  <div class="card shadow-lg p-4">
+<div class="container mt-custom">
+  <h1 class="text-center mb-4 animate-title">Edit Student</h1>
+  <div class="card shadow-lg p-4 animate-card">
     <form action="/edit-student/{{student.student_id}}" method="POST">
       <div class="mb-3">
         <label for="name" class="form-label">Student Name</label>
@@ -29,59 +29,95 @@
     max-width: 700px; /* Slightly wider for elegance */
     padding: 10px;
     margin: 0 auto;
+    margin-top: -20px; /* Pulls container slightly up */
+    position: relative;
+    z-index: 10; /* Ensures it stays above navbar if overlapping */
   }
 
   h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: #021B79; /* Match navbar gradient */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 5px rgba(2, 27, 121, 0.2);
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, rgba(2, 27, 121, 0.1), rgba(24, 90, 219, 0.1));
+    border-radius: 10px;
   }
 
   .card {
     border: none;
-    border-radius: 15px;
-    background: #ffffff;
-    transition: transform 0.3s ease;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa); /* Subtle gradient */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
 
   .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Slightly more lift on hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   }
 
   .form-label {
     font-weight: 600;
-    color: #333;
+    color: #021B79; /* Match theme */
     font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
   }
 
   .form-control-custom {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 14px;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   }
 
   .form-control-custom:focus {
     border-color: #185ADB; /* Match navbar */
-    box-shadow: 0 0 8px rgba(24, 90, 219, 0.3);
+    box-shadow: 0 0 10px rgba(24, 90, 219, 0.4);
+    transform: scale(1.02); /* Subtle zoom on focus */
     outline: none;
   }
 
   .btn-custom {
     background: linear-gradient(45deg, #021B79, #185ADB); /* Match navbar */
     border: none;
-    padding: 14px;
+    padding: 15px;
     font-size: 1.2rem;
-    font-weight: 600;
-    border-radius: 10px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    font-weight: 700;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .btn-custom:hover {
     background: linear-gradient(45deg, #0A1931, #021B79);
-    transform: scale(1.05);
+    transform: translateY(-3px) scale(1.03); /* Lift and slight zoom */
+    box-shadow: 0 8px 20px rgba(2, 27, 121, 0.3);
+  }
+
+  /* Animations */
+  .animate-title {
+    animation: fadeInDown 0.5s ease-out;
+  }
+
+  .animate-card {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Responsive Fixes */
@@ -89,19 +125,22 @@
     .container {
       max-width: 100%;
       padding: 15px;
+      margin-top: -10px; /* Less overlap on mobile */
     }
 
     h1 {
       font-size: 1.8rem;
+      padding: 8px 15px;
     }
 
     .card {
       padding: 15px;
+      border-radius: 15px;
     }
 
     .form-control-custom {
       font-size: 0.9rem;
-      padding: 10px;
+      padding: 12px;
     }
 
     .form-label {
