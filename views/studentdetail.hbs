@@ -1,5 +1,15 @@
 <!-- views/student-details.hbs -->
-<div class="student-info" id="studentDetails">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="student-info" id="studentDetails">
   <h1>Student Details</h1>
   <ul>
     <li><strong>Student ID:</strong> <span>{{student.student_id}}</span></li>
@@ -109,8 +119,8 @@
     }
   }
 </style>
-
-<script>
+</body>
+  <script>
   document.getElementById("downloadBtn").addEventListener("click", function() {
     const content = document.getElementById('studentDetails');
     html2pdf()
@@ -118,3 +128,7 @@
       .save('Student-Details.pdf');
   });
 </script>
+</html>
+
+
+
