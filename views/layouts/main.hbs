@@ -115,9 +115,16 @@
       transform: scale(1.2) translate(5px, 5px);
     }
     footer .social-media .d-flex {
+      display: inline-flex !important; /* Force inline horizontal layout */
+      flex-direction: row !important; /* Explicitly horizontal */
+      flex-wrap: nowrap !important; /* No wrapping */
+      gap: 20px !important; /* Consistent spacing */
       justify-content: center;
-      gap: 15px; /* Increased gap for spacing */
-      flex-wrap: nowrap; /* Prevent wrapping */
+      align-items: center;
+      min-width: 200px; /* Ensure enough space */
+    }
+    footer .social-media .d-flex a {
+      display: inline-block; /* Ensure icons stay inline */
     }
     footer .social-media .d-flex a:hover {
       color: #007bff !important;
@@ -154,24 +161,29 @@
       font-family: 'Open Sans', sans-serif;
       font-weight: 700;
     }
-    footer .text-light {
+    footer .footer-bottom {
+      display: inline-block; /* Keep text together */
+      white-space: nowrap; /* Prevent splitting */
       font-family: 'Poppins', sans-serif;
       font-weight: 400;
-      white-space: nowrap; /* Prevent text splitting */
+      font-size: 1rem;
+      color: #f8f9fa;
     }
     @media (max-width: 767px) {
       footer .row {
-        flex-direction: column; /* Stack columns on mobile */
+        flex-direction: column;
       }
       footer .col-md-4 {
         margin-bottom: 20px;
       }
       footer .social-media .d-flex {
-        gap: 10px; /* Smaller gap on mobile */
+        gap: 15px !important; /* Slightly smaller on mobile */
+        min-width: 0; /* Adjust for smaller screens */
       }
-      footer .text-light {
-        white-space: normal; /* Allow wrapping on mobile if needed */
-        font-size: 0.9rem; /* Slightly smaller text */
+      footer .footer-bottom {
+        white-space: normal; /* Allow wrapping on mobile */
+        font-size: 0.9rem;
+        text-align: center;
       }
     }
   </style>
@@ -253,7 +265,9 @@
           </div>
         </div>
         <hr class="border-light">
-        <p class="text-light mb-0">© 2025 SMS. All rights reserved. Powered by <a href="https://t.me/know82" style="color: tomato;">A-SQUARE-RADIANT-SOLUTIONS.</a> | Contact: +251930836011</p>
+        <div class="footer-bottom">
+          <p class="text-light mb-0">© 2025 SMS. All rights reserved. Powered by <a href="https://t.me/know82" style="color: tomato;">A-SQUARE-RADIANT-SOLUTIONS.</a> | Contact: +251930836011</p>
+        </div>
       </div>
     </footer>
   </div>
