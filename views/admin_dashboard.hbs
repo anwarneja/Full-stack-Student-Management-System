@@ -1,5 +1,5 @@
 <!-- views/admin_dashboard.hbs -->
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Admin Dashboard</a>
     <a href="/create_user" class="btn btn-success ms-auto">+ Create New User</a>
@@ -47,7 +47,6 @@
     background: linear-gradient(45deg, #021B79, #0A1931, #185ADB);
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-    padding: 1rem; /* Consistent padding */
   }
 
   .navbar-brand {
@@ -57,9 +56,10 @@
   }
 
   .table-container {
-    max-width: 1200px; /* Cap width on desktop */
-    width: 100%; /* Fluid width */
+    width: 95%; /* Your original width */
+    max-width: 1200px; /* Cap for large screens */
     margin: 0 auto;
+    margin-top: 20px;
     padding: 15px;
     background: #ffffff;
     border-radius: 12px;
@@ -83,20 +83,11 @@
     transition: all 0.3s ease-in-out;
   }
 
-  .btn-success, .btn-danger {
-    font-size: 1rem;
-    padding: 8px 12px;
-  }
-
   /* Responsive Adjustments */
   @media (max-width: 767px) {
     .container {
-      padding: 10px; /* Smaller padding */
-      margin-top: 2rem; /* Reduce top margin */
-    }
-
-    .navbar {
-      padding: 0.75rem; /* Smaller padding */
+      padding: 10px;
+      margin-top: 1rem; /* Slightly less space */
     }
 
     .navbar-brand {
@@ -104,11 +95,12 @@
     }
 
     .table-container {
+      width: 100%; /* Full width on mobile */
       padding: 10px; /* Smaller padding */
     }
 
     .table {
-      font-size: 0.9rem; /* Smaller table text */
+      font-size: 0.9rem; /* Smaller text */
     }
 
     h3 {
@@ -121,13 +113,12 @@
     }
 
     .container-fluid {
-      flex-direction: column; /* Stack navbar items */
-      align-items: flex-start;
+      flex-wrap: wrap; /* Allow wrapping if needed */
+      gap: 10px; /* Space between items */
     }
 
     .btn-success {
-      margin-top: 10px; /* Space below brand */
-      width: 100%; /* Full width on mobile */
+      margin-left: 0; /* Override ms-auto on mobile */
     }
   }
 </style>
