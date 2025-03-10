@@ -1,4 +1,4 @@
-
+<!-- views/student-details.hbs -->
 <div class="student-info" id="studentDetails">
   <h1>Student Details</h1>
   <ul>
@@ -87,30 +87,29 @@
   /* Responsive Fixes */
   @media (max-width: 767px) {
     .student-info {
-      padding: 15px; /* Reduce padding */
-      margin: 20px auto; /* Smaller margin */
-      max-width: 100%; /* Full width on mobile */
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 100%;
     }
 
     h1 {
-      font-size: 1.8rem; /* Smaller title */
+      font-size: 1.8rem;
     }
 
     .student-info ul li {
-      font-size: 1rem; /* Smaller text */
-      padding: 10px 0; /* Less padding */
-      flex-direction: column; /* Stack label and value */
+      font-size: 1rem;
+      padding: 10px 0;
+      flex-direction: column;
       text-align: left;
     }
 
     .btn-custom, #downloadBtn {
-      padding: 10px; /* Smaller buttons */
-      font-size: 0.9rem; /* Smaller text */
+      padding: 10px;
+      font-size: 0.9rem;
     }
   }
 </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
   document.getElementById("downloadBtn").addEventListener("click", function() {
     const content = document.getElementById('studentDetails');
