@@ -1,61 +1,47 @@
-// // const mysql = require('mysql');
-// // require('dotenv').config();
-
-// // const db = mysql.createConnection({
-// //     host: process.env.DB_HOST,
-// //     user: process.env.DB_USER,
-// //     password: process.env.DB_PASS,
-// //     database: process.env.DB_NAME,
-// //     port: process.env.DB_PORT || 3306
-// // });
-
-// // db.connect((err) => {
-// //     if (err) {
-// //         console.error('Database connection failed:', err);
-        
-// //     }
-// //     console.log('Connected to the MySQL database.');
-// // });
-
-// // module.exports = db;
 // const mysql = require('mysql');
 // require('dotenv').config();
 
-// const pool = mysql.createPool({
-//     connectionLimit: 10,
+// const db = mysql.createConnection({
 //     host: process.env.DB_HOST,
 //     user: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
+//     password: process.env.DB_PASS,
 //     database: process.env.DB_NAME,
 //     port: process.env.DB_PORT || 3306
 // });
 
-// pool.getConnection((err, connection) => {
+// db.connect((err) => {
 //     if (err) {
-//         console.error('Pool connection failed:', err);
-//         throw err;
+//         console.error('Database connection failed:', err);
+        
 //     }
-//     console.log('Connected to MySQL pool.');
-//     connection.release();
+//     console.log('Connected to the MySQL database.');
 // });
 
-// module.exports = pool;
-
-// config/db.js
-const mysql = require('mysql2/promise');
+// module.exports = db;
+const mysql = require('mysql');
 require('dotenv').config();
 
 const pool = mysql.createPool({
-  connectionLimit: 5,          // Lower for serverless
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
-  connectTimeout: 5000,        // 5s timeout
-  acquireTimeout: 5000,        // 5s to acquire
-  waitForConnections: true,    // Queue if busy
-  queueLimit: 0               // Unlimited queue
+
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
+
+    connectTimeout: 5000,      // Fail after 5s instead of 10s
+  acquireTimeout: 5000,      // 5s to acquire a connection
+  waitForConnections: true,  // Queue if pool is busy
+  queueLimit: 0
+});
+
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('Pool connection failed:', err);
+        throw err;
+    }
+    console.log('Connected to MySQL pool.');
+    connection.release();
 });
 
 module.exports = pool;
