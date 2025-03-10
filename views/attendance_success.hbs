@@ -1,67 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Added Successfully!</title>
-   
-    <style>
-        /* Crazy UI Styles */
-      
-
-        .success-card {
-            background: #28a745;
-            color: white;
-            padding: 40px;
-            margin-left: 24%;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            width: 400px;
-            animation: bounceIn 1s ease;
-        }
-
-        .success-card h1 {
-            font-size: 3rem;
-        }
-
-        .success-card p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .btn-go-back {
-            background-color: #fff;
-            color: #28a745;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .btn-go-back:hover {
-            background: #28a745;
-            color: #fff;
-        }
-
-        /* Bounce animation */
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.5); }
-            60% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-    </style>
-</head>
 
 
-    <div class="success-card">
-        <h1>🎉 Success!</h1>
-        <p>The attendance has been added successfully.</p>
-        <a href="/attendance" class="btn-go-back">Go Back to Attendance List</a>
-        
-    </div>
 
+<!-- views/attendance_success.hbs -->
+<div class="container py-4">
+  <div class="success-card mx-auto">
+    <h1>🎉 Success!</h1>
+    <p>The attendance has been added successfully.</p>
+    <a href="/attendance" class="btn-go-back">Go Back to Attendance List</a>
+  </div>
+</div>
 
-</html>
+<style>
+  .success-card {
+    background: #28a745;
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px; /* Replace fixed width */
+    width: 100%; /* Fluid width */
+    animation: bounceIn 1s ease;
+  }
+
+  .success-card h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  .success-card p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .btn-go-back {
+    background-color: #fff;
+    color: #28a745;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Ensure proper sizing */
+    text-decoration: none; /* Remove underline */
+  }
+
+  .btn-go-back:hover {
+    background: #28a745;
+    color: #fff;
+  }
+
+  /* Bounce animation */
+  @keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    60% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 767px) {
+    .container {
+      padding: 15px; /* Smaller padding */
+      margin-top: 2rem; /* Reduce top margin */
+    }
+
+    .success-card {
+      max-width: 100%; /* Full width on mobile */
+      padding: 20px; /* Smaller padding */
+    }
+
+    .success-card h1 {
+      font-size: 2rem; /* Smaller title */
+    }
+
+    .success-card p {
+      font-size: 1rem; /* Smaller text */
+    }
+
+    .btn-go-back {
+      padding: 8px 16px; /* Smaller button */
+      font-size: 0.9rem;
+    }
+  }
+</style>
