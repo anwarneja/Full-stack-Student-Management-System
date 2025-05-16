@@ -4,79 +4,88 @@ const express = require("express");
 var app = express();
 const cors = require("cors");
 // const db=require("./config/db");
-const db = require("./config/db");  // Adjust the path if necessary
+const db = require("./config/db"); // Adjust the path if necessary
 const path = require("path");
 const session = require("express-session");
 
 const authRoutes = require("./routes/auth");
 
-require('dotenv').config();
+require("dotenv").config();
 
-app.use(session({
+app.use(
+  session({
     secret: "secretkey",
     resave: false,
-    saveUninitialized: true
-}));
-
-
+    saveUninitialized: true,
+  })
+);
 
 // Middleware to make `user` available in Handlebars
 app.use((req, res, next) => {
-    res.locals.user = req.session.user || null;
-    next();
+  res.locals.user = req.session.user || null;
+  next();
 });
-
-
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 // Static files
 app.use(express.static("public"));
 
 // Templating engine setup
-app.engine("hbs", engine({ extname: ".hbs",layoutsDir: __dirname + '/views/layouts' }));
+app.engine(
+  "hbs",
+  engine({ extname: ".hbs", layoutsDir: __dirname + "/views/layouts" })
+);
 app.set("view engine", "hbs");
-app.set("views",path.join(__dirname,"views"))
+app.set("views", path.join(__dirname, "views"));
 
-const routes=require("./server/route/user");
-app.use('/',routes)
- 
-
+console.log("DEBUG user.js:", JSON.stringify(require("./server/route/user")));
+const routes = require("./server/route/user");
+console.log("DEBUG fees.js:", JSON.stringify(require("./routes/fees")));
 const feeRoutes = require("./routes/fees");
-app.use('/', feeRoutes);  // Fee-related routes
+console.log(
+  "DEBUG attendance.js:",
+  JSON.stringify(require("./routes/attendance"))
+);
+const attendanceRouter = require("./routes/attendance");
+console.log(
+  "DEBUG absenteeism.js:",
+  JSON.stringify(require("./routes/absenteeism"))
+);
+const attendanceRoutert = require("./routes/absenteeism");
+console.log("DEBUG admin.js:", JSON.stringify(require("./routes/admin")));
+const admin1 = require("./routes/admin");
+console.log("DEBUG auth.js:", JSON.stringify(require("./routes/auth")));
 
+app.use("/", routes);
 
-const attendanceRouter = require("./routes/attendance"); // Include the attendance router
-app.use('/', attendanceRouter); // Use the attendance router for attendance-related routes
+app.use("/", feeRoutes); // Fee-related routes
 
-const attendanceRoutert = require("./routes/absenteeism"); // Include the attendance router
-app.use('/', attendanceRoutert); // Use the attendance router for attendance-related routes
+app.use("/", attendanceRouter); // Use the attendance router for attendance-related routes
 
-const admin1=require("./routes/admin");
-app.use('/',admin1);
+app.use("/", attendanceRoutert); // Use the attendance router for attendance-related routes
 
+app.use("/", admin1);
 
-
-
-
-
-app.use('/',authRoutes);
-
+app.use("/", authRoutes);
 
 app.get("/pp", (req, res) => {
-    if (!req.session.user) return res.redirect("/login");
-    res.render("home", { user: req.session.user });
+  if (!req.session.user) return res.redirect("/login");
+  res.render("home", { user: req.session.user });
 });
 
-
-
-const { isAuthenticated, isAdmin, isTeacher, isStudent } = require("./middlewares/middleware");
-
-
+const {
+  isAuthenticated,
+  isAdmin,
+  isTeacher,
+  isStudent,
+} = require("./middlewares/middleware");
 
 // // Start the server
 // app.listen(3000, (err, result) => {
@@ -86,9 +95,9 @@ const { isAuthenticated, isAdmin, isTeacher, isStudent } = require("./middleware
 //         console.log("Server listening to port: 3000");
 //     }
 // });
-app.get('/', (req, res) => {
-    res.send('Welcome to the Student Management System'); // Simple test
-    // Or: res.render('index'); if you have an index.hbs
+app.get("/", (req, res) => {
+  res.send("Welcome to the Student Management System"); // Simple test
+  // Or: res.render('index'); if you have an index.hbs
 });
 
 module.exports = app;
