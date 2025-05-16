@@ -1,23 +1,4 @@
-// const express = require('express');
-// const router = express.Router();
-// const db = require("../config/db");
 
-// router.get('/attendance', (req, res) => {
-//     const query = `
-//         SELECT students.name, students.roll_number, students.class, attendance.attendance_date as date, attendance.status
-//         FROM attendance
-//         JOIN students ON attendance.student_id = students.student_id
-//     `;
-    
-//     db.query(query, (err, results) => {
-//         if (err) {
-//             console.error("Error fetching attendance:", err);
-//             return res.status(500).send("Database error");
-//         }
-        
-//         res.render('attendance', { attendance: results });
-//     });
-// });
 
 // module.exports = router;
 const express = require('express');
