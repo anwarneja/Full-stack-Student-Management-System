@@ -78,7 +78,7 @@ const { isAuthenticated, isAdmin, isTeacher, isStudent } = require("./middleware
 
 
 
-// Start the server
+// // Start the server
 // app.listen(3000, (err, result) => {
 //     if (err) {
 //         console.log(err);
