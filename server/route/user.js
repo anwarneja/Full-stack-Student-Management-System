@@ -95,6 +95,8 @@ router.get('/edit-student/:id', (req, res) => {
   });
 });
 
+
+
 router.post('/edit-student/:id', (req, res) => {
   const { name, roll_number, clss, parent_contact } = req.body;
   const studentId = req.params.id;
