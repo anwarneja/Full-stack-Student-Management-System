@@ -60,15 +60,15 @@ Open your browser and go to http://localhost:3000 to view the application.
 
 ### Dashboard SIgn up page
 <img width="945" alt="Image" src="https://github.com/user-attachments/assets/722182fd-2997-450c-a7d4-a549b4ac3c4b" />
-
+ 
+ ##Students Management Page
 
 💰 Fee Management
 ### Fee Management
 <img width="938" alt="Image" src="https://github.com/user-attachments/assets/8641f436-d8dc-4a9c-acc0-f1eb3186caf3" />
 
 📊 Attendance Tracking
-![Attendance](screenshots/dashboard.png)
-
+<img width="946" alt="Image" src="https://github.com/user-attachments/assets/b53d5012-f5e3-42c5-bb0d-667862026066" />
 
 
 
