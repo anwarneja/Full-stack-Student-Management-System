@@ -58,9 +58,8 @@ Open your browser and go to http://localhost:3000 to view the application.
 📸 Screenshots
 🏠 Dashboard
 
-### Dashboard
-![Dashboard](screenshots/dashboard.png)
-
+### Dashboard SIgn up page
+<img width="945" alt="Image" src="https://github.com/user-attachments/assets/722182fd-2997-450c-a7d4-a549b4ac3c4b" />
 
 
 💰 Fee Management
