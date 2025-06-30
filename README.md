@@ -61,7 +61,8 @@ Open your browser and go to http://localhost:3000 to view the application.
 ### Dashboard SIgn up page
 <img width="945" alt="Image" src="https://github.com/user-attachments/assets/722182fd-2997-450c-a7d4-a549b4ac3c4b" />
  
- ##Students Management Page
+ #🏠Students Management Page
+ <img width="946" alt="Image" src="https://github.com/user-attachments/assets/6b2f50f9-9f0d-462e-8c9c-14a0fffd46a2" />
 
 💰 Fee Management
 ### Fee Management
