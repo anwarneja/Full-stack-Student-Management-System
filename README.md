@@ -64,7 +64,7 @@ Open your browser and go to http://localhost:3000 to view the application.
 
 💰 Fee Management
 ### Fee Management
-![Fee Management](screenshots/fee-management.png)
+<img width="938" alt="Image" src="https://github.com/user-attachments/assets/8641f436-d8dc-4a9c-acc0-f1eb3186caf3" />
 
 📊 Attendance Tracking
 ![Attendance](screenshots/dashboard.png)
